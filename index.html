@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belgrano y Moreno · Diálogo sobre la Revolución de Mayo</title>
+<meta name="description" content="Recreación ficticia con fines educativos: Manuel Belgrano y Mariano Moreno conversan sobre la Revolución de Mayo. También podés hablar con cada uno.">
+<style>
+:root{--bg:#f4f6f9;--ink:#14233a;--soft:#4b5b73;--line:#cfd6e0;--panel:#fff;--stage:#e4ecf5;--floor:#c9d6e6;--acc:#2f7fc0;--bel:#2f6fb0;--mor:#2f5d4a}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1826;--ink:#eef2f8;--soft:#a7b4c8;--line:#2a3a52;--panel:#16223a;--stage:#1b2a44;--floor:#223552;--acc:#6db3ea;--bel:#6db3ea;--mor:#6fcfa6}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1rem}
+header{padding:1.6rem 0 .8rem}
+h1{font:700 clamp(1.7rem,5vw,2.6rem)/1.1 "Iowan Old Style",Palatino,Georgia,serif;margin:0 0 .4rem}
+header p{margin:0;color:var(--soft);max-width:42rem}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;background:var(--stage);border:1px solid var(--line);border-radius:.8rem .8rem 0 0;padding:1rem .6rem 0;margin-top:1rem}
+.char{display:flex;flex-direction:column;align-items:center}
+.char svg{width:min(100%,15rem);height:auto;display:block}
+.floor{height:.9rem;background:var(--floor);grid-column:1/-1;margin:0 -.6rem}
+/* Carteles: debajo de cada personaje, nunca sobre la imagen */
+.plate{width:100%;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);padding:.55rem .7rem;margin:.6rem 0 .6rem;border-radius:.3rem;text-align:center}
+.plate b{display:block;font-size:1.05rem}
+.plate span{display:block;font-size:.85rem;color:var(--soft)}
+.plate i{display:none;font-style:normal;font-size:.8rem;color:var(--c);font-weight:700}
+.char.speaking .plate{box-shadow:0 0 0 3px var(--c)}
+.char.speaking .plate i{display:block}
+.caption{background:var(--panel);border:1px solid var(--line);border-top:0;border-radius:0 0 .8rem .8rem;padding:1rem 1.1rem;min-height:8rem}
+.caption .who{font-weight:700;margin:0 0 .25rem}
+.caption p{margin:0}
+#line{font:1.15rem/1.55 "Iowan Old Style",Palatino,Georgia,serif}
+.badge{display:inline-block;margin-top:.6rem;font-size:.82rem;color:var(--soft);border:1px solid var(--line);border-radius:99px;padding:.1rem .6rem}
+.ctrl{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+button{font:600 .95rem system-ui;padding:.6rem 1rem;border-radius:.5rem;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+@media(prefers-color-scheme:dark){button{color:#0f1826}}
+button.alt{background:transparent;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+button:disabled{opacity:.5;cursor:not-allowed}
+section{padding:1.2rem 0;border-top:1px solid var(--line)}
+h2{font-size:1.2rem;margin:0 0 .5rem}
+.note{font-size:.9rem;color:var(--soft)}
+#status{min-height:1.4rem;font-size:.92rem;color:var(--soft)}
+.ask{margin:.4rem 0 1rem}.ask label{display:block;margin-bottom:.4rem}.row{display:flex;gap:.5rem;flex-wrap:wrap}.row input{flex:1 1 14rem;font:inherit;padding:.6rem .8rem;border-radius:.5rem;border:1px solid var(--line);background:var(--panel);color:var(--ink)}.row input:focus-visible{outline:3px solid var(--acc)}.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}.chip{font-weight:500;font-size:.85rem;padding:.35rem .7rem;border-radius:99px}
+footer{padding:1rem 0 2.5rem;font-size:.88rem;color:var(--soft)}
+/* Movimiento al hablar */
+svg *{transform-box:fill-box}
+.mouth{transform-origin:center;transform:scaleY(1)}
+.arm,.head{transform-box:view-box}
+.speaking .mouth{animation:talk .28s ease-in-out infinite alternate}
+.speaking .armL{animation:gl 1.5s ease-in-out infinite}
+.speaking .armR{animation:gr 1.5s ease-in-out .4s infinite}
+.speaking .head{animation:nod 1.2s ease-in-out infinite}
+@keyframes talk{from{transform:scaleY(.6)}to{transform:scaleY(4.2)}}
+@keyframes gl{0%,100%{transform:rotate(0)}35%{transform:rotate(-55deg)}65%{transform:rotate(-20deg)}}
+@keyframes gr{0%,100%{transform:rotate(0)}35%{transform:rotate(55deg)}65%{transform:rotate(18deg)}}
+@keyframes nod{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){.speaking .armL,.speaking .armR,.speaking .head{animation:none}.speaking .mouth{animation-duration:.5s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Belgrano y Moreno, 1810</h1>
+  <p>Mirá un diálogo educativo sobre la Revolución de Mayo o hacé tu propia pregunta: Belgrano y Moreno se van a responder entre ellos. Cuando hablan, mueven la boca y los brazos.</p>
+</header>
+
+<div class="stage" aria-label="Escenario con Manuel Belgrano a la izquierda y Mariano Moreno a la derecha">
+  <div class="char" id="belgrano" style="--c:var(--bel)">
+    <svg viewBox="0 0 200 270" role="img" aria-label="Ilustración de Manuel Belgrano"></svg>
+    <div class="plate"><b>Manuel Belgrano</b><span>Educación, economía y campañas de la independencia</span><i>Hablando</i></div>
+  </div>
+  <div class="char" id="moreno" style="--c:var(--mor)">
+    <svg viewBox="0 0 200 270" role="img" aria-label="Ilustración de Mariano Moreno"></svg>
+    <div class="plate"><b>Mariano Moreno</b><span>Primera Junta, prensa y libertad de expresión</span><i>Hablando</i></div>
+  </div>
+  <div class="floor"></div>
+</div>
+
+<div class="caption" aria-live="polite">
+  <p class="who" id="who">Coordinador educativo</p>
+  <p id="line">Tocá “Ver el diálogo” o escribí una pregunta.</p>
+  <span class="badge">Recreación ficticia con fines educativos: no es una conversación documentada</span>
+</div>
+
+<div class="ctrl">
+  <button id="play">Ver el diálogo</button>
+  <button id="stop" class="alt" disabled>Detener</button>
+</div>
+<div class="ask">
+  <label for="q"><b>Preguntales algo:</b> te van a responder y se van a contestar entre ellos.</label>
+  <div class="row">
+    <input id="q" type="text" maxlength="200" placeholder="Ej.: ¿Por qué fue importante la Gazeta?" autocomplete="off">
+    <button id="send">Preguntar</button>
+    <button id="mic" class="alt" hidden aria-label="Preguntar por voz">Voz</button>
+  </div>
+  <div class="chips">
+    <button class="alt chip">¿Qué pasó el 25 de mayo de 1810?</button>
+    <button class="alt chip">¿Para qué sirve la educación en una sociedad nueva?</button>
+    <button class="alt chip">¿Por qué importa la libertad de expresión?</button>
+  </div>
+</div>
+<div id="status" role="status"></div>
+
+<section>
+  <h2>Qué es esto</h2>
+  <p>Son representaciones digitales educativas, no los personajes reales. El diálogo está inventado para enseñar y se apoya en hechos históricos; los temas que los historiadores discuten se presentan como discutidos. Si usás un dato en un trabajo, verificalo con tu docente o en archivos y bibliotecas públicas.</p>
+  <p class="note">Voces: mientras no haya audio grabado en la carpeta <code>audio/</code>, el diálogo se lee con la voz de tu navegador. Cuando hacés una pregunta, la página se la envía a un agente y le pasa su respuesta al otro: ese intercambio lo coordina esta página, no es una conexión nativa entre agentes. Los textos se procesan en ElevenLabs. Las respuestas pueden tener errores: verificalas.</p>
+</section>
+<footer>Coordinador educativo: guía el diálogo y propone la pregunta final.</footer>
+</div>
+
+<script>
+/* ===== Configuración editable ===== */
+const CFG = {
+  belgrano: { id: "agent_6601m4ge78wgfjbtrn1j3zzaqxb5", pitch: .85 },  // CONFIRMAR cuál de los dos agentes de Belgrano usar
+  moreno:   { id: "agent_3401m4xw5frhen49tg23ap67snsd",  pitch: 1.1 },
+  // Si grabás audio con ElevenLabs, ponelo en audio/ con estos nombres (opcional). Sin archivo, se usa la voz del navegador.
+  audioDir: "audio/"
+};
+/* ===== Guion (recreación ficticia con fines educativos) ===== */
+const GUION = [
+ ["coord","En mil ochocientos diez, Buenos Aires vivía días de incertidumbre. Napoleón había invadido España y el rey Fernando Séptimo estaba prisionero. Escuchemos a Belgrano y a Moreno en una recreación ficticia, pensada para aprender."],
+ ["moreno","A mediados de mayo llegó la noticia de que había caído la Junta Central, que gobernaba en nombre del rey. Para muchos, el virrey ya no tenía de dónde sostener su autoridad."],
+ ["belgrano","El veintidós de mayo se reunió el Cabildo Abierto para discutir quién debía gobernar. El veinticuatro se armó una junta presidida por el virrey Cisneros, pero fue rechazada."],
+ ["moreno","Y el veinticinco de mayo se formó la Primera Junta, presidida por Cornelio Saavedra. Yo fui secretario, a cargo de Gobierno y Guerra, junto a Juan José Paso."],
+ ["belgrano","Yo integré esa Junta como vocal. Gobernó en nombre de Fernando Séptimo. Los historiadores discuten si eso fue sincero o una estrategia prudente para ganar tiempo."],
+ ["moreno","En junio salió la Gazeta de Buenos Aires, y fui su principal redactor. Mis escritos de prensa defendían que los derechos de las personas debían ser conocidos por todos."],
+ ["belgrano","Desde el Consulado de Comercio yo ya venía proponiendo mejorar la educación, la agricultura y el comercio. Para mí, una sociedad nueva también necesitaba escuelas."],
+ ["moreno","En septiembre de mil ochocientos diez la Junta fundó la Biblioteca Pública, y se me considera uno de sus impulsores. Leer y debatir ideas era parte de construir algo nuevo."],
+ ["coord","Dos miradas que se complementan: una insistía en la información y los derechos; la otra, en la educación y el desarrollo. Ahora pensá: ¿por qué crees que conocer los propios derechos puede ser tan importante en una sociedad nueva?"]
+];
+const NAMES = {coord:"Coordinador educativo", belgrano:"Manuel Belgrano", moreno:"Mariano Moreno"};
+
+/* ===== Personajes (ilustraciones originales, estilizadas) ===== */
+function figure(o){return `
+<rect x="20" y="258" width="160" height="6" rx="3" fill="#000" opacity=".08"/>
+<g class="arm armR" style="transform-origin:138px 132px"><line x1="138" y1="132" x2="158" y2="205" stroke="${o.coat}" stroke-width="22" stroke-linecap="round"/><circle cx="159" cy="210" r="10" fill="${o.skin}"/></g>
+<path d="M58 250 L62 135 Q100 112 138 135 L142 250 Z" fill="${o.coat}"/>
+<path d="M88 124 L100 168 L112 124 Z" fill="#f3f1ea"/>
+<rect x="${o.sashX}" y="150" width="8" height="90" fill="${o.sash}" opacity=".9" transform="rotate(-8 100 190)"/>
+<g class="arm armL" style="transform-origin:62px 132px"><line x1="62" y1="132" x2="42" y2="205" stroke="${o.coat}" stroke-width="22" stroke-linecap="round"/><circle cx="41" cy="210" r="10" fill="${o.skin}"/></g>
+<g class="head" style="transform-origin:100px 118px">
+ <rect x="91" y="104" width="18" height="22" fill="${o.skin}"/>
+ <ellipse cx="100" cy="78" rx="31" ry="36" fill="${o.skin}"/>
+ <path d="${o.hair}" fill="${o.hairC}"/>
+ <circle cx="88" cy="76" r="3.2" fill="#222"/><circle cx="112" cy="76" r="3.2" fill="#222"/>
+ <path d="M80 66 Q88 62 95 66 M105 66 Q112 62 120 66" stroke="#222" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+ <path d="M100 80 L97 92 L103 92" stroke="#00000044" stroke-width="2" fill="none"/>
+ <ellipse class="mouth" cx="100" cy="100" rx="9" ry="2.2" fill="#6b2230"/>
+</g>`}
+document.querySelector("#belgrano svg").innerHTML=figure({coat:"#2c5a96",skin:"#e8c3a0",sash:"#9fd0f2",sashX:96,hairC:"#4a4038",hair:"M68 70 Q70 36 100 36 Q132 36 132 70 Q122 52 100 52 Q78 52 68 70 Z"});
+document.querySelector("#moreno svg").innerHTML=figure({coat:"#26352f",skin:"#e2b896",sash:"#f3f1ea",sashX:96,hairC:"#241c18",hair:"M68 72 Q66 34 100 34 Q134 34 132 72 Q124 48 100 48 Q76 48 68 72 Z"});
+
+/* ===== Reproducción ===== */
+const $=s=>document.querySelector(s);
+let stopFlag=false, live=null, speaking=null;
+function setSpeaking(who){["belgrano","moreno"].forEach(k=>$("#"+k).classList.toggle("speaking",k===who));speaking=who}
+function show(who,text){$("#who").textContent=NAMES[who]||who;$("#line").textContent=text}
+function pickVoice(){const v=speechSynthesis.getVoices();return v.find(x=>/es-AR/i.test(x.lang))||v.find(x=>/^es/i.test(x.lang))||null}
+function say(i){return new Promise(res=>{
+  const [who,text]=GUION[i], mover=(who==="coord")?null:who, file=CFG.audioDir+String(i+1).padStart(2,"0")+"-"+who+".mp3";
+  show(who,text);
+  const done=()=>{setSpeaking(null);res()};
+  const fallback=()=>{
+    if(!("speechSynthesis" in window)){setSpeaking(mover);setTimeout(done,Math.max(3000,text.length*55));return}
+    const u=new SpeechSynthesisUtterance(text);const v=pickVoice();if(v)u.voice=v;u.lang=v?v.lang:"es-AR";
+    u.pitch=(CFG[who]||{}).pitch||1;u.onstart=()=>setSpeaking(mover);u.onend=done;u.onerror=done;speechSynthesis.speak(u)};
+  const a=new Audio(file);
+  a.addEventListener("canplaythrough",()=>{a.play().then(()=>setSpeaking(mover)).catch(fallback)},{once:true});
+  a.addEventListener("ended",done);a.addEventListener("error",fallback,{once:true});
+  a.load();
+})}
+async function run(){
+  stopFlag=false;$("#play").disabled=true;$("#stop").disabled=false;
+  for(let i=0;i<GUION.length&&!stopFlag;i++){await say(i)}
+  speechSynthesis.cancel();setSpeaking(null);$("#play").disabled=false;$("#stop").disabled=true;
+  if(!stopFlag){$("#status").textContent="Fin del diálogo. Podés hablar con cualquiera de los dos."}
+}
+$("#play").onclick=()=>{endLive();run()};
+
+/* ===== Mesa: tu pregunta va a un agente y su respuesta se le pasa al otro ===== */
+const FULL={belgrano:"Manuel Belgrano",moreno:"Mariano Moreno"}, SHORT={belgrano:"Belgrano",moreno:"Moreno"};
+const TURNOS=4; let sessions={}, token=0;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function connect(who){
+  if(sessions[who])return sessions[who];
+  const {Conversation}=await import("https://esm.sh/@elevenlabs/client");
+  const s={wait:null,session:null};
+  s.session=await Conversation.startSession({agentId:CFG[who].id,connectionType:"websocket",textOnly:true,
+    overrides:{conversation:{textOnly:true}},
+    onMessage:m=>{if(m&&m.source==="ai"&&s.wait){const r=s.wait;s.wait=null;r(m.message)}},
+    onDisconnect:()=>{delete sessions[who]},
+    onError:()=>{if(s.wait){const r=s.wait;s.wait=null;r(null)}}});
+  sessions[who]=s; await sleep(1200); // deja pasar el saludo inicial
+  return s;
+}
+async function ask(who,text){
+  const s=await connect(who);
+  return new Promise(res=>{const t=setTimeout(()=>{s.wait=null;res(null)},30000);s.wait=m=>{clearTimeout(t);res(m)};s.session.sendUserMessage(text)});
+}
+function voice(who,text){return new Promise(res=>{
+  show(who,text);
+  const done=()=>{setSpeaking(null);res()};
+  if(!("speechSynthesis" in window)){setSpeaking(who==="coord"?null:who);setTimeout(done,Math.max(3000,text.length*55));return}
+  const u=new SpeechSynthesisUtterance(text);const v=pickVoice();if(v)u.voice=v;u.lang=v?v.lang:"es-AR";
+  u.pitch=(CFG[who]||{}).pitch||1;u.onstart=()=>setSpeaking(who==="coord"?null:who);u.onend=done;u.onerror=done;speechSynthesis.speak(u);
+})}
+function primero(q){
+  if(/educaci|escuela|bandera|econom|comercio|agricultur|ejército|campaña|industria/i.test(q))return"belgrano";
+  return"moreno";
+}
+async function mesa(q){
+  stopFlag=true;speechSynthesis.cancel();const my=++token;
+  $("#send").disabled=true;$("#play").disabled=true;$("#stop").disabled=false;
+  let quien=primero(q), prev=null, prevWho=null;
+  try{
+    for(let t=0;t<TURNOS&&my===token;t++){
+      const otro=quien==="belgrano"?"moreno":"belgrano";
+      $("#status").textContent=SHORT[quien]+" está pensando…";
+      const msg=t===0
+        ? `Estás en una charla a dos voces con ${FULL[otro]} frente a estudiantes. Un estudiante pregunta: "${q}". Respondé en 2 o 3 oraciones, en primera persona y con voseo, distinguiendo lo documentado de lo atribuido o debatido. No inventes datos.`
+        : `Seguís en la charla con ${FULL[otro]} frente a estudiantes (la pregunta era: "${q}"). ${SHORT[prevWho]} acaba de decir: "${prev}". Respondele directamente a ${SHORT[prevWho]} en 2 o 3 oraciones: podés coincidir, matizar o sumar tu mirada, sin repetir lo ya dicho ni inventar datos. Primera persona y voseo.${t===TURNOS-1?" Cerrá con una frase corta.":""}`;
+      const r=await ask(quien,msg);
+      if(my!==token)return;
+      if(!r){$("#status").textContent="No hubo respuesta de "+FULL[quien]+". Revisá el README: el agente debe ser público y permitir modo solo texto.";return}
+      $("#status").textContent="";
+      await voice(quien,r);
+      prev=r;prevWho=quien;quien=otro;
+    }
+    if(my===token){await voice("coord","Para seguir pensando: ¿con cuál de las dos miradas te quedás, y por qué?")}
+  }catch(e){$("#status").textContent="No se pudo conectar con los agentes: "+(e&&e.message?e.message:"revisá la configuración (ver README).")}
+  finally{if(my===token){$("#send").disabled=false;$("#play").disabled=false;$("#stop").disabled=true}}
+}
+async function endLive(){token++;for(const k in sessions){try{await sessions[k].session.endSession()}catch(e){}}sessions={};}
+$("#stop").onclick=()=>{stopFlag=true;token++;speechSynthesis.cancel();setSpeaking(null);$("#status").textContent="";$("#play").disabled=false;$("#send").disabled=false;$("#stop").disabled=true};
+$("#send").onclick=()=>{const q=$("#q").value.trim();if(q)mesa(q)};
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("#send").click()}});
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{$("#q").value=b.textContent;$("#send").click()});
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SR){const mic=$("#mic");mic.hidden=false;mic.onclick=()=>{const r=new SR();r.lang="es-AR";r.onresult=e=>{$("#q").value=e.results[0][0].transcript;$("#send").click()};r.onerror=()=>{$("#status").textContent="No pude escuchar. Probá escribiendo."};r.start();$("#status").textContent="Te escucho…"}}
+window.addEventListener("pagehide",()=>{for(const k in sessions){try{sessions[k].session.endSession()}catch(e){}}});
+if("speechSynthesis" in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}
+</script>
+</body>
+</html>
